@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <title>Job Aplication</title>
+    <style>
+        body {
+            padding-left: 0px;
+        }
+        form{
+            padding-left: 50px;
+        }
+
+        h2 {
+            background-color: #0ceedb;
+            margin-top: 0;
+            margin-bottom: 40px;
+            padding: 20px 20px 20px 40px;
+        }
+        button{
+            /* width: 250px; */
+            font-weight: bolder;
+        }
+        #head1{
+            background-color: #C25100;
+        }
+        #message{
+            color: rgb(8, 240, 39); margin-left: 200px;
+        }
+        /* .add_butten{
+            margin-left: 350px;
+        } */
+        table, th, td {
+            border:1px solid black;
+        }
+        .job_form{
+            display: flex;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+</head>
+<body>
+    <!-- {% block content %} -->
+    <div id="head1"><center><h2>New Aplicant</h2></center></div>
+    <div id="message">
+        {% if messages %}
+            {% for message in messages %}
+            {{ message }}<br/>
+        {% endfor %}
+        {% endif %}
+    </div>
+
+    <!-- <form method="POST" class="job-form" id<div id="head1"><center><h2>New Aplicant</h2></center></div>
+    <div id="message">
+        {% if messages %}
+            {% for message in messages %}
+            {{ message }}<br/>
+        {% endfor %}
+        {% endif %}
+    </div>="form1"  enctype="multipart/form-data">{% csrf_token %}
+        {{ first_form.as_p }} <br><br>
+        
+
+        
+        
+    <hr>
+    
+    <button type="submit" class="add_butten">Add Here</button><br><br>
+    <button type="submit" class="save btn btn-primary">Update Here</button>
+    </form> <br><br> -->
+<div class="job_form">    
+    <div style="width: 40%;">
+        <form class="form1" method="POST" action="">{% csrf_token %}
+            <div class="divform">
+                <label  for="">First Name :</label>
+                <input class="add_input" type="text" name="first_name"> <br><br>
+                <label for="">Second Name :</label>
+                <input type="text" name="second_name"> <br><br>
+                <label for="">City :</label>
+                <input type="text" name="city"> <br><br>
+
+                <h5>Additional Details: <button type="submit" class="add_butten">Add Here</button><br></h5>
+                <label  for="">Title :</label>
+                <input class="add_input" type="text" name="title"> <br><br>
+                <label for="">Instructor :</label>
+                <input type="text" name="instructor"> <br><br>
+                <label for="">Duration :</label>
+                <input type="text" name="duration"> <br><br>
+            </div>
+                <input type="submit" value="Submit"/> <br><br>    
+        </form>
+    </div>
+    
+
+    <div>
+        <table style="width:40%">
+            <tr>
+                <th>First Name</th>
+                <th>Second Name</th>
+                <th>City</th>
+                <!-- <th>Duration</th> -->
+            </tr>
+                {% for course in person %}
+            <tr>
+                <td>{{ course.first_name }}</td>
+                <td>{{ course.second_name }}</td>
+                <td>{{ course.city }}</td>
+                <!-- <td>{{ course.duration }}</td> -->
+            </tr>
+                {% endfor %}
+        </table>
+    </div>
+    
+    <div style="margin-left: 20px;">
+        <table style="width:40%">
+            <tr>
+                <!-- <th>First Name</th> -->
+                <th>Title</th>
+                <th>Instructor</th>
+                <th>Duration</th>
+            </tr>
+                {% for course in blogs %}
+            <tr>
+                <!-- <td>{{ course.first_name }}</td> -->
+                <td>{{ course.title }}</td>
+                <td>{{ course.instructor }}</td>
+                <td>{{ course.duration }}</td>
+            </tr>
+                {% endfor %}
+        </table>
+    </div>
+
+    
+</div>   
+<br><br><br>
+
+
+    <script>
+        $(document).ready(function(){
+            var max_field = 10
+            var butten1 = $(".add_butten")
+            var input1 = $(".add_input")
+
+            var x = 1;
+
+            $(butten1).click(function(e){
+                e.preventDefault();
+                if(x < max_field){
+                    x++;
+                    $(".divform").append('<label for="">Title :</label><input class="add_input" type="text" name="title"><br><br><label for="">Instructor :</label><input type="text" name="instructor"><br><br><label for="">Duration :</label><input type="text" name="duration"><a href="" class="remove1">Remove</a><br><br>')
+                }
+            })
+
+            $(input1).on("click",".remove1",function(e){
+                e.preventDefault();
+                $(this).parent('div').remove();
+            })
+        });
+    </script>
+
+
+    
+<!-- {% endblock %} -->
+    
+</body>
+</html>
